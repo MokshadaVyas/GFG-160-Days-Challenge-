@@ -8,20 +8,67 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    void reverseArray(vector<int> &arr) {
-        // code here
-        int n=arr.size();
-        int i =0;
+
+      void builtInFunc(vector<int> &arr)
+    {
+        reverse(arr.begin(),arr.end());
+    }
+    
+    void usingTempVec(vector<int> &arr)
+    {
+        int size = arr.size();
+        vector<int>temp;
+        
+        for(int i=size-1;i>=0;i--)
+        {
+            temp.push_back(arr[i]);
+        }
+        
+        for(int i=0;i<size;i++)
+        {
+            arr[i]=temp[i];
+        }
+    }
+    
+    void swapping(vector<int> &arr)
+    {
+        int n = arr.size();
+        int i=0;
         int j=n-1;
         
-        while(i<=j)
+        while(i<j)
         {
-            int temp=arr[i];
-            arr[i]=arr[j];
-            arr[j]=temp;
+            swap(arr[i],arr[j]);
             i++;
             j--;
         }
+    }
+    
+    void stackMethod(vector<int> &arr)
+    {
+        int n = arr.size();
+        stack<int>st;
+        
+        for(int &i : arr)
+        {
+            st.push(i);
+        }
+        
+        for(int i=0;i<n;i++)
+        {
+            int n = st.top();
+            st.pop();
+            arr[i]=n;
+        }
+    }
+
+    void reverseArray(vector<int> &arr) {
+        // code here
+        builtInFunc(arr);
+        // usingTempVec(arr);
+        // swapping(arr);
+        // stackMethod(arr);
+
     }
 };
 
